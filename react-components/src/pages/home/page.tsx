@@ -53,7 +53,7 @@ export default function HomePage() {
                   onClick={(e) =>
                     handleCopy(e, story.id, story.componentSource!)
                   }
-                  className="p-2 hover:bg-gray-100 rounded transition-colors flex-shrink-0"
+                  className="p-2 hover:bg-gray-100 rounded transition-colors shrink-0"
                   title="Copy component code"
                 >
                   {copiedId === story.id ? (

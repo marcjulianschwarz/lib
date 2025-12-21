@@ -10,6 +10,7 @@ import SearchBarStory from "@/stories/SearchBarStory";
 import SidebarStory from "@/stories/SidebarStory";
 import TableStory from "@/stories/TableStory";
 import UploadAreaStory from "@/stories/UploadAreaStory";
+
 import { type Story } from "@/types/story";
 
 import badgeSource from "@/components/Badge/Badge.tsx?raw";
@@ -24,6 +25,8 @@ import searchBarSource from "@/components/SearchBar/SearchBar.tsx?raw";
 import sidebarSource from "@/components/Sidebar/Sidebar.tsx?raw";
 import tableSource from "@/components/Table/Table.tsx?raw";
 import uploadAreaSource from "@/components/UploadArea/UploadArea.tsx?raw";
+import labeledTextSectionSource from "@/components/LabeledTextSection/LabeledTextSection.tsx?raw";
+import LabeledTextSectionStory from "@/stories/LabeledTextSectionStory";
 
 export const stories: Story[] = [
   {
@@ -110,5 +113,12 @@ export const stories: Story[] = [
     description: "Drag and drop file upload component",
     component: UploadAreaStory,
     componentSource: uploadAreaSource,
+  },
+  {
+    id: "labeled-text-section",
+    title: "Labeled Text Section",
+    description: "",
+    component: LabeledTextSectionStory,
+    componentSource: labeledTextSectionSource,
   },
 ];
