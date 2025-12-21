@@ -6,4 +6,5 @@ export interface Story {
   description?: string;
   component: ComponentType;
   fullPage?: boolean;
+  componentSource?: string;
 }
