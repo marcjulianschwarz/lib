@@ -27,6 +27,8 @@ import tableSource from "@/components/Table/Table.tsx?raw";
 import uploadAreaSource from "@/components/UploadArea/UploadArea.tsx?raw";
 import labeledTextSectionSource from "@/components/LabeledTextSection/LabeledTextSection.tsx?raw";
 import LabeledTextSectionStory from "@/stories/LabeledTextSectionStory";
+import YouTubeEmbedStory from "@/stories/YouTubeEmbedStory";
+import youtubeEmbedSource from "@/components/YouTubeEmbed/YouTubeEmbed?raw";
 
 export const stories: Story[] = [
   {
@@ -120,5 +122,12 @@ export const stories: Story[] = [
     description: "",
     component: LabeledTextSectionStory,
     componentSource: labeledTextSectionSource,
+  },
+  {
+    id: "youtube-embed",
+    title: "YouTube Embed",
+    description: "Shows an embedded YouTube player based on videoId",
+    component: YouTubeEmbedStory,
+    componentSource: youtubeEmbedSource,
   },
 ];
