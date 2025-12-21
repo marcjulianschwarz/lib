@@ -4,6 +4,7 @@ import Expander from "@/components/Expander/Expander";
 import Input from "@/components/Input/Input";
 import SearchBar from "@/components/SearchBar/SearchBar";
 import UploadArea from "@/components/UploadArea/UploadArea";
+import ExternalUrlStory from "@/stories/ExternalUrlStory";
 
 import ModalStory from "@/stories/ModalStory";
 import TableStory from "@/stories/TableStory";
@@ -22,6 +23,7 @@ export default function HomePage() {
         <Button className="w-fit">Click this</Button>
         <Input placeholder="Enter some text" />
         <SearchBar placeholder="Search" />
+        <ExternalUrlStory />
         <TableStory />
         <ModalStory />
         <UploadArea onFilesChanged={() => {}} />
