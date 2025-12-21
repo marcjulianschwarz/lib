@@ -4,6 +4,7 @@ import "./index.css";
 import { BrowserRouter, Route, Routes } from "react-router";
 import HomePage from "./pages/home/page";
 import SidebarPage from "./pages/sidebar/page";
+import StoryPage from "./pages/story/page";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -11,6 +12,7 @@ createRoot(document.getElementById("root")!).render(
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/sidebar" element={<SidebarPage />} />
+        <Route path="/story/:id" element={<StoryPage />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>,
