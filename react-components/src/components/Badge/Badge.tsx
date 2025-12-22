@@ -24,6 +24,7 @@ export default function Badge(props: {
   color?: BadgeColor;
   hexColor?: string | null;
   className?: string;
+  onClick?: React.MouseEventHandler<HTMLSpanElement>;
 }) {
   if (props.hexColor) {
     const normalizedColor = props.hexColor.startsWith("#")
@@ -119,6 +120,7 @@ export default function Badge(props: {
 
     return (
       <span
+        onClick={props.onClick}
         className={`px-3 py-1 text-xs rounded-full font-medium ${props.className || ""}`}
         style={{
           backgroundColor,
@@ -134,6 +136,7 @@ export default function Badge(props: {
 
   return (
     <span
+      onClick={props.onClick}
       className={`px-3 py-1 ${colorClass} text-xs rounded-full font-medium w-fit ${props.className || ""}`}
     >
       {props.text}
