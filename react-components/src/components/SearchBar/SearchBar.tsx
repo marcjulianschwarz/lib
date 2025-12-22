@@ -4,15 +4,19 @@ import Input from "../Input/Input";
 interface SearchBarProps {
   value?: string;
   onChange?: (value: string) => void;
-  placeholder: string;
+  placeholder?: string;
   className?: string;
+  onEnter?: () => void;
+  ref?: React.RefObject<HTMLInputElement | null>;
 }
 
 export default function SearchBar({
   value,
   onChange,
-  placeholder,
+  placeholder = "Search",
   className = "",
+  onEnter,
+  ref,
 }: SearchBarProps) {
   return (
     <div className={`relative ${className}`}>
@@ -31,8 +35,10 @@ export default function SearchBar({
         onKeyDown={(e) => {
           if (e.key === "Enter") {
             e.currentTarget.blur();
+            onEnter?.();
           }
         }}
+        ref={ref}
         placeholder={placeholder}
         className="pl-10"
       />
