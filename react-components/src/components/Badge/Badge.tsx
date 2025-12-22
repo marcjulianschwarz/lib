@@ -23,6 +23,7 @@ export default function Badge(props: {
   text: string;
   color?: BadgeColor;
   hexColor?: string | null;
+  className?: string;
 }) {
   if (props.hexColor) {
     const normalizedColor = props.hexColor.startsWith("#")
@@ -66,7 +67,6 @@ export default function Badge(props: {
       return {
         r: Math.round(r * (1 - factor)),
         g: Math.round(g * (1 - factor)),
-
         b: Math.round(b * (1 - factor)),
       };
     };
@@ -74,7 +74,9 @@ export default function Badge(props: {
     const rgb = hexToRgb(normalizedColor);
     if (!rgb) {
       return (
-        <span className="px-2 py-0.5 bg-slate-100 text-slate-700 text-xs rounded-full font-medium">
+        <span
+          className={`px-2 py-0.5 bg-slate-100 text-slate-700 text-xs rounded-full font-medium ${props.className || ""}`}
+        >
           {props.text}
         </span>
       );
@@ -117,7 +119,7 @@ export default function Badge(props: {
 
     return (
       <span
-        className="px-3 py-1 text-xs rounded-full font-medium"
+        className={`px-3 py-1 text-xs rounded-full font-medium ${props.className || ""}`}
         style={{
           backgroundColor,
           color: textColor,
@@ -132,7 +134,7 @@ export default function Badge(props: {
 
   return (
     <span
-      className={`px-3 py-1 ${colorClass} text-xs rounded-full font-medium w-fit`}
+      className={`px-3 py-1 ${colorClass} text-xs rounded-full font-medium w-fit ${props.className || ""}`}
     >
       {props.text}
     </span>
