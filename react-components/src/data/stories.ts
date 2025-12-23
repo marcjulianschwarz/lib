@@ -29,6 +29,8 @@ import labeledTextSectionSource from "@/components/LabeledTextSection/LabeledTex
 import LabeledTextSectionStory from "@/stories/LabeledTextSectionStory";
 import YouTubeEmbedStory from "@/stories/YouTubeEmbedStory";
 import youtubeEmbedSource from "@/components/YouTubeEmbed/YouTubeEmbed?raw";
+import TagBadgeStory from "@/stories/TagBadgeStory";
+import tagBadgeSource from "@/components/TagBadge/TagBadge.tsx?raw";
 
 export const stories: Story[] = [
   {
@@ -129,5 +131,12 @@ export const stories: Story[] = [
     description: "Shows an embedded YouTube player based on videoId",
     component: YouTubeEmbedStory,
     componentSource: youtubeEmbedSource,
+  },
+  {
+    id: "tag-badge",
+    title: "Tag Badge",
+    description: "",
+    component: TagBadgeStory,
+    componentSource: tagBadgeSource,
   },
 ];
