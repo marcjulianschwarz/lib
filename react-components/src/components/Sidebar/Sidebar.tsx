@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { User, Menu, X } from "lucide-react";
+import { User, Menu, X, ChevronLeft, ChevronRight } from "lucide-react";
 import { useClickOutside } from "@/hooks/useClickOutside";
 import AccountFlyout from "./AccountFlyout";
 
@@ -18,6 +18,7 @@ export default function Sidebar({
 }: SidebarProps) {
   const [showFlyout, setShowFlyout] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
+  const [showSidebar, setShowSidebar] = useState(true);
   const containerRef = useClickOutside(() => setShowFlyout(false));
   const menuRef = useClickOutside(() => setShowMenu(false));
 
@@ -31,6 +32,11 @@ export default function Sidebar({
     setShowMenu(!showMenu);
   };
 
+  const handleToggleSidebar = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setShowSidebar(!showSidebar);
+  };
+
   const handleNavigate = () => {
     setShowMenu(false);
     onNavigate?.();
@@ -42,15 +48,27 @@ export default function Sidebar({
       <div className="sm:hidden h-[66px]"></div>
 
       {/* Spacer for desktop sidebar */}
-      <div className="hidden sm:block sm:h-screen sm:w-[140px]"></div>
+      <div
+        className={`hidden sm:block sm:h-screen transition-all duration-300 ${showSidebar ? "sm:w-[140px]" : "sm:w-[20px]"}`}
+      ></div>
+
+      {/* Toggle button for desktop sidebar */}
+      {!showSidebar && (
+        <button
+          onClick={handleToggleSidebar}
+          className="hidden sm:flex fixed top-4 left-4 z-50 w-[48px] h-[20px] justify-center items-center bg-gray-200 rounded-full border border-gray-300 transition-colors hover:bg-gray-300 text-gray-500"
+        >
+          <ChevronRight className="w-3 h-3" />
+        </button>
+      )}
 
       {/* Mobile hamburger menu */}
       <div className="sm:hidden fixed top-4 left-4 z-50">
         <button
           onClick={handleMenuClick}
-          className="w-[50px] h-[50px] flex justify-center items-center bg-white rounded-xl border border-gray-200 transition-colors hover:bg-gray-100"
+          className="w-[48px] h-[20px] flex justify-center items-center bg-gray-100 rounded-full border border-gray-200 transition-colors hover:bg-gray-200 text-gray-400"
         >
-          {showMenu ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          {showMenu ? <X className="w-3 h-3" /> : <Menu className="w-3 h-3" />}
         </button>
       </div>
 
@@ -90,38 +108,47 @@ export default function Sidebar({
       )}
 
       {/* Regular sidebar for wider screens */}
-      <div className="w-full h-min flex-row p-4 hidden sm:flex sm:flex-col sm:fixed sm:h-screen sm:w-min sm:transition-all sm:duration-300">
-        <div className="bg-white border border-gray-200 rounded-2xl w-full h-min p-4 flex flex-row gap-5 sm:h-full sm:w-20 sm:my-8 sm:mx-4 sm:flex-col sm:items-center">
-          {children}
-
-          <div
-            className="relative ml-auto hover:cursor-pointer sm:mt-auto"
-            ref={containerRef}
+      {showSidebar && (
+        <div className="w-full h-min flex-row p-4 hidden sm:flex sm:flex-col sm:fixed sm:h-screen sm:w-min sm:transition-all sm:duration-300">
+          <button
+            onClick={handleToggleSidebar}
+            className="hidden sm:flex absolute top-4 left-1/2 -translate-x-1/2 z-50 w-[48px] h-[20px] justify-center items-center bg-gray-100 rounded-full border border-gray-200 transition-colors hover:bg-gray-200 text-gray-400"
           >
+            <ChevronLeft className="w-3 h-3" />
+          </button>
+
+          <div className="bg-white border border-gray-200 rounded-2xl w-full h-min p-4 flex flex-row gap-5 sm:h-full sm:w-20 sm:my-8 sm:mx-4 sm:flex-col sm:items-center">
+            {children}
+
             <div
-              className="w-[50px] h-[50px] flex justify-center items-center no-underline bg-white rounded-xl border border-gray-300 transition-colors hover:bg-gray-100"
-              onClick={handleUserClick}
+              className="relative ml-auto hover:cursor-pointer sm:mt-auto"
+              ref={containerRef}
             >
-              {username ? (
-                <p className="bg-gray-400 border border-gray-300 rounded-full w-4/5 h-4/5 flex items-center justify-center text-white font-semibold select-none text-base">
-                  {username.slice(0, 2).toUpperCase()}
-                </p>
-              ) : (
-                <User
-                  className="w-6 h-6"
-                  color="currentColor"
-                  strokeWidth={2}
-                />
-              )}
+              <div
+                className="w-[50px] h-[50px] flex justify-center items-center no-underline bg-white rounded-xl border border-gray-300 transition-colors hover:bg-gray-100"
+                onClick={handleUserClick}
+              >
+                {username ? (
+                  <p className="bg-gray-400 border border-gray-300 rounded-full w-4/5 h-4/5 flex items-center justify-center text-white font-semibold select-none text-base">
+                    {username.slice(0, 2).toUpperCase()}
+                  </p>
+                ) : (
+                  <User
+                    className="w-6 h-6"
+                    color="currentColor"
+                    strokeWidth={2}
+                  />
+                )}
+              </div>
+              <AccountFlyout
+                showFlyout={showFlyout}
+                onNavigate={() => setShowFlyout(false)}
+                isAuthenticated={isAuthenticated}
+              />
             </div>
-            <AccountFlyout
-              showFlyout={showFlyout}
-              onNavigate={() => setShowFlyout(false)}
-              isAuthenticated={isAuthenticated}
-            />
           </div>
         </div>
-      </div>
+      )}
     </>
   );
 }
