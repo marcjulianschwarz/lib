@@ -16,11 +16,10 @@ export default function AccountFlyout({
       className={`
         absolute z-100 flex flex-col gap-2
         bg-white shadow-lg border border-gray-300 rounded-2xl
-        w-[200px] overflow-hidden origin-bottom-left
+        w-[200px] overflow-hidden origin-left
         transition-all duration-100 ease-in-out
         ${showFlyout ? "opacity-100 visible scale-100 p-2" : "opacity-0 invisible scale-95 p-0"}
-        top-[calc(100%+30px)] left-[calc(-200%-32px)]
-        sm:top-auto sm:left-[calc(100%+30px)] sm:bottom-[-15px] sm:origin-left
+        bottom-[-15px] left-[calc(100%+30px)]
       `}
       style={{
         height: showFlyout ? "122px" : "0",
