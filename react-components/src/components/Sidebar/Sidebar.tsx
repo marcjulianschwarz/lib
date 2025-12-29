@@ -109,7 +109,7 @@ export default function Sidebar({
 
       {/* Desktop sidebar */}
       <div
-        className={`hidden sm:flex sm:flex-col sm:h-screen sm:sticky sm:top-0 transition-all duration-300 ease-in-out overflow-hidden ${showSidebar ? (showTitles ? "sm:w-[228px]" : "sm:w-[112px]") : "sm:w-0"}`}
+        className={`hidden sm:flex sm:flex-col sm:h-screen sm:sticky sm:top-0 transition-all duration-300 ease-in-out ${showSidebar ? (showTitles ? "sm:w-[228px]" : "sm:w-[112px]") : "sm:w-0 overflow-hidden"}`}
       >
         <div
           className={`flex flex-col p-4 h-full min-w-max transition-all duration-300 ease-in-out ${showSidebar ? "sm:translate-x-0 sm:opacity-100" : "sm:-translate-x-full sm:opacity-0"}`}
