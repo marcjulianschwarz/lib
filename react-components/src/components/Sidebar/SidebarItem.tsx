@@ -1,4 +1,5 @@
 import { Link, useLocation } from "react-router";
+import { useSidebarContext } from "./Sidebar";
 
 export interface SidebarItemProps {
   name: string;
@@ -6,20 +7,26 @@ export interface SidebarItemProps {
   icon: React.ReactNode;
 }
 
-export function SidebarItem({ link, icon }: SidebarItemProps) {
+export function SidebarItem({ link, icon, name }: SidebarItemProps) {
   const location = useLocation();
   const isActive = location.pathname === link;
+  const { showTitles } = useSidebarContext();
 
   return (
-    <Link to={link}>
+    <Link to={link} className={showTitles ? "w-full" : ""}>
       <div
         className={`
-        w-[50px] h-[50px] flex justify-center items-center no-underline
+        ${showTitles ? "w-full px-4 gap-3 justify-start" : "w-[50px] justify-center"} h-[50px] flex items-center no-underline
         ${isActive ? "bg-gray-100 border-gray-400" : "bg-white border-gray-200"} rounded-xl border transition-colors
         hover:bg-gray-100
       `}
       >
-        {icon}
+        <div className="w-6 h-6 flex items-center justify-center shrink-0">
+          {icon}
+        </div>
+        {showTitles && (
+          <span className="text-sm font-medium whitespace-nowrap">{name}</span>
+        )}
       </div>
     </Link>
   );
