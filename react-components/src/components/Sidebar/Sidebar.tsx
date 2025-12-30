@@ -1,7 +1,8 @@
-import { useState, createContext, useContext } from "react";
+import { useState } from "react";
 import { User, Menu, X, ChevronLeft, ChevronRight } from "lucide-react";
 import { useClickOutside } from "@/hooks/useClickOutside";
 import AccountFlyout from "./AccountFlyout";
+import { SidebarContext } from "@/contexts/SidebarContext";
 
 interface SidebarProps {
   children: React.ReactNode;
@@ -10,12 +11,6 @@ interface SidebarProps {
   onNavigate?: () => void;
   showTitles?: boolean;
 }
-
-const SidebarContext = createContext<{ showTitles: boolean }>({
-  showTitles: true,
-});
-
-export const useSidebarContext = () => useContext(SidebarContext);
 
 export default function Sidebar({
   username,
@@ -109,7 +104,7 @@ export default function Sidebar({
 
       {/* Desktop sidebar */}
       <div
-        className={`hidden sm:flex sm:flex-col sm:h-screen sm:sticky sm:top-0 transition-all duration-300 ease-in-out ${showSidebar ? (showTitles ? "sm:w-[228px]" : "sm:w-[112px]") : "sm:w-0 overflow-hidden"}`}
+        className={`hidden sm:flex sm:flex-col sm:h-screen sm:sticky sm:top-0 transition-all duration-300 ease-in-out ${showSidebar ? (showTitles ? "sm:w-[228px]" : "sm:w-28") : "sm:w-0 overflow-hidden"}`}
       >
         <div
           className={`flex flex-col p-4 h-full min-w-max transition-all duration-300 ease-in-out ${showSidebar ? "sm:translate-x-0 sm:opacity-100" : "sm:-translate-x-full sm:opacity-0"}`}
@@ -135,7 +130,7 @@ export default function Sidebar({
                 onClick={handleUserClick}
               >
                 {username ? (
-                  <div className="bg-gray-400 border border-gray-300 rounded-full w-[40px] h-[40px] flex items-center justify-center text-white font-semibold select-none text-base shrink-0">
+                  <div className="bg-gray-400 border border-gray-300 rounded-full w-10 h-10 flex items-center justify-center text-white font-semibold select-none text-base shrink-0">
                     {username.slice(0, 2).toUpperCase()}
                   </div>
                 ) : (

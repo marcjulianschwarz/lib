@@ -1,5 +1,5 @@
+import { useSidebarContext } from "@/contexts/SidebarContext";
 import { Link, useLocation } from "react-router";
-import { useSidebarContext } from "./Sidebar";
 
 export interface SidebarItemProps {
   name: string;
