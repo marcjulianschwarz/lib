@@ -31,6 +31,8 @@ import YouTubeEmbedStory from "@/stories/YouTubeEmbedStory";
 import youtubeEmbedSource from "@/components/YouTubeEmbed/YouTubeEmbed?raw";
 import TagBadgeStory from "@/stories/TagBadgeStory";
 import tagBadgeSource from "@/components/TagBadge/TagBadge.tsx?raw";
+import SettingsSectionStory from "@/stories/SettingsSectionStory";
+import settingsSectionSource from "@/components/SettingsSection/SettingsSection.tsx?raw";
 
 export const stories: Story[] = [
   {
@@ -138,5 +140,13 @@ export const stories: Story[] = [
     description: "",
     component: TagBadgeStory,
     componentSource: tagBadgeSource,
+  },
+  {
+    id: "settings-section",
+    title: "Settings Section",
+    description:
+      "Container component for settings with optional description and variants",
+    component: SettingsSectionStory,
+    componentSource: settingsSectionSource,
   },
 ];
