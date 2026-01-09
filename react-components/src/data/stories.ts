@@ -80,7 +80,7 @@ export const stories: Story[] = [
   {
     id: "modal",
     title: "Modal",
-    description: "Modal dialog component with custom content",
+    description: "Full-featured modal dialog with backdrop, keyboard controls (Escape to close, Enter for main action), and scroll-lock management",
     component: ModalStory,
     componentSource: modalSource,
   },

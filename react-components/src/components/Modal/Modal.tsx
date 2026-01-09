@@ -5,9 +5,19 @@ interface ModalProps {
   onClose: () => void;
   title: string;
   children?: React.ReactNode | React.ReactNode[];
+  onMainAction?: () => void;
+  enableEscapeKey?: boolean;
+  enableEnterKey?: boolean;
 }
 
-export default function Modal({ onClose, title, children }: ModalProps) {
+export default function Modal({
+  onClose,
+  title,
+  children,
+  onMainAction,
+  enableEscapeKey = true,
+  enableEnterKey = true
+}: ModalProps) {
   useEffect(() => {
     const originalStyle = window.getComputedStyle(document.body).overflow;
     const scrollbarWidth =
@@ -29,6 +39,23 @@ export default function Modal({ onClose, title, children }: ModalProps) {
       window.scrollTo(0, parseInt(scrollY || "0") * -1);
     };
   }, []);
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape" && enableEscapeKey) {
+        onClose();
+      } else if (event.key === "Enter" && enableEnterKey && onMainAction) {
+        event.preventDefault();
+        onMainAction();
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [onClose, onMainAction, enableEscapeKey, enableEnterKey]);
 
   return (
     <div
