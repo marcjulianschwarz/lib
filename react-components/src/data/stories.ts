@@ -1,5 +1,6 @@
 import BadgeStory from "@/stories/BadgeStory";
 import ButtonStory from "@/stories/ButtonStory";
+import CodeBlockStory from "@/stories/CodeBlockStory";
 import ExpanderStory from "@/stories/ExpanderStory";
 import ExternalUrlStory from "@/stories/ExternalUrlStory";
 import InlineCodeStory from "@/stories/InlineCodeStory";
@@ -16,6 +17,7 @@ import { type Story } from "@/types/story";
 
 import badgeSource from "@/components/Badge/Badge.tsx?raw";
 import buttonSource from "@/components/Button/Button.tsx?raw";
+import codeBlockSource from "@/components/CodeBlock/CodeBlock.tsx?raw";
 import expanderSource from "@/components/Expander/Expander.tsx?raw";
 import externalUrlSource from "@/components/ExternalUrl/ExternalUrl.tsx?raw";
 import inlineCodeSource from "@/components/InlineCode/InlineCode.tsx?raw";
@@ -50,6 +52,14 @@ export const stories: Story[] = [
     description: "Interactive button component",
     component: ButtonStory,
     componentSource: buttonSource,
+  },
+  {
+    id: "code-block",
+    title: "Code Block",
+    description:
+      "Multi-line code display component with optional language label",
+    component: CodeBlockStory,
+    componentSource: codeBlockSource,
   },
   {
     id: "expander",
