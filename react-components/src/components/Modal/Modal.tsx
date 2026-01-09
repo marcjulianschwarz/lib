@@ -1,5 +1,13 @@
 import { useEffect } from "react";
 import CloseButton from "../CloseButton/CloseButton";
+import Button from "../Button/Button";
+
+export interface ModalActionButton {
+  label: string;
+  onClick: () => void;
+  variant?: "primary" | "secondary" | "danger";
+  className?: string;
+}
 
 interface ModalProps {
   onClose: () => void;
@@ -8,6 +16,8 @@ interface ModalProps {
   onMainAction?: () => void;
   enableEscapeKey?: boolean;
   enableEnterKey?: boolean;
+  actionButtons?: ModalActionButton[];
+  otherButton?: ModalActionButton;
 }
 
 export default function Modal({
@@ -16,7 +26,9 @@ export default function Modal({
   children,
   onMainAction,
   enableEscapeKey = true,
-  enableEnterKey = true
+  enableEnterKey = true,
+  actionButtons,
+  otherButton,
 }: ModalProps) {
   useEffect(() => {
     const originalStyle = window.getComputedStyle(document.body).overflow;
@@ -88,6 +100,44 @@ export default function Modal({
         >
           {children}
         </div>
+
+        {actionButtons && actionButtons.length > 0 && (
+          <div className="flex items-center justify-between p-4 border-t border-slate-200 shrink-0">
+            <div>
+              {otherButton && (
+                <Button
+                  onClick={otherButton.onClick}
+                  className={otherButton.className || ""}
+                >
+                  {otherButton.label}
+                </Button>
+              )}
+            </div>
+            <div className="flex gap-2">
+              {actionButtons.map((button, index) => {
+                let variantClass = "";
+                if (button.variant === "primary") {
+                  variantClass = "bg-blue-600 text-white hover:bg-blue-700";
+                } else if (button.variant === "danger") {
+                  variantClass = "bg-red-600 text-white hover:bg-red-700";
+                } else if (button.variant === "secondary") {
+                  variantClass =
+                    "bg-slate-200 text-slate-700 hover:bg-slate-300";
+                }
+
+                return (
+                  <Button
+                    key={index}
+                    onClick={button.onClick}
+                    className={`${variantClass} ${button.className || ""}`}
+                  >
+                    {button.label}
+                  </Button>
+                );
+              })}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
