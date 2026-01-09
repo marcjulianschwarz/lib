@@ -11,6 +11,7 @@ import RegisterViewStory from "@/stories/RegisterViewStory";
 import SearchBarStory from "@/stories/SearchBarStory";
 import SidebarStory from "@/stories/SidebarStory";
 import TableStory from "@/stories/TableStory";
+import TitledListStory from "@/stories/TitledListStory";
 import UploadAreaStory from "@/stories/UploadAreaStory";
 
 import { type Story } from "@/types/story";
@@ -28,6 +29,7 @@ import registerViewSource from "@/views/RegisterView.tsx?raw";
 import searchBarSource from "@/components/SearchBar/SearchBar.tsx?raw";
 import sidebarSource from "@/components/Sidebar/Sidebar.tsx?raw";
 import tableSource from "@/components/Table/Table.tsx?raw";
+import titledListSource from "@/components/TitledList/TitledList.tsx?raw";
 import uploadAreaSource from "@/components/UploadArea/UploadArea.tsx?raw";
 import labeledTextSectionSource from "@/components/LabeledTextSection/LabeledTextSection.tsx?raw";
 import LabeledTextSectionStory from "@/stories/LabeledTextSectionStory";
@@ -132,6 +134,14 @@ export const stories: Story[] = [
     description: "Data table component with sorting and filtering",
     component: TableStory,
     componentSource: tableSource,
+  },
+  {
+    id: "titled-list",
+    title: "Titled List",
+    description:
+      "Generic list component with title, subtitle, action buttons, and empty state",
+    component: TitledListStory,
+    componentSource: titledListSource,
   },
   {
     id: "upload-area",
