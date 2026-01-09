@@ -2,6 +2,7 @@ import BadgeStory from "@/stories/BadgeStory";
 import ButtonStory from "@/stories/ButtonStory";
 import ExpanderStory from "@/stories/ExpanderStory";
 import ExternalUrlStory from "@/stories/ExternalUrlStory";
+import InlineCodeStory from "@/stories/InlineCodeStory";
 import InputStory from "@/stories/InputStory";
 import LoginViewStory from "@/stories/LoginViewStory";
 import ModalStory from "@/stories/ModalStory";
@@ -17,6 +18,7 @@ import badgeSource from "@/components/Badge/Badge.tsx?raw";
 import buttonSource from "@/components/Button/Button.tsx?raw";
 import expanderSource from "@/components/Expander/Expander.tsx?raw";
 import externalUrlSource from "@/components/ExternalUrl/ExternalUrl.tsx?raw";
+import inlineCodeSource from "@/components/InlineCode/InlineCode.tsx?raw";
 import inputSource from "@/components/Input/Input.tsx?raw";
 import loginViewSource from "@/views/LoginView.tsx?raw";
 import modalSource from "@/components/Modal/Modal.tsx?raw";
@@ -64,6 +66,13 @@ export const stories: Story[] = [
     componentSource: externalUrlSource,
   },
   {
+    id: "inline-code",
+    title: "Inline Code",
+    description: "Keyboard shortcut or inline code display component",
+    component: InlineCodeStory,
+    componentSource: inlineCodeSource,
+  },
+  {
     id: "input",
     title: "Input",
     description: "Text input field component",
@@ -80,7 +89,8 @@ export const stories: Story[] = [
   {
     id: "modal",
     title: "Modal",
-    description: "Full-featured modal dialog with backdrop, keyboard controls (Escape to close, Enter for main action), and scroll-lock management",
+    description:
+      "Full-featured modal dialog with backdrop, keyboard controls (Escape to close, Enter for main action), and scroll-lock management",
     component: ModalStory,
     componentSource: modalSource,
   },
