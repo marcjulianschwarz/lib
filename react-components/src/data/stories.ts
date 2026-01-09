@@ -10,6 +10,7 @@ import ModalStory from "@/stories/ModalStory";
 import RegisterViewStory from "@/stories/RegisterViewStory";
 import SearchBarStory from "@/stories/SearchBarStory";
 import SidebarStory from "@/stories/SidebarStory";
+import TabSelectorStory from "@/stories/TabSelectorStory";
 import TableStory from "@/stories/TableStory";
 import TitledListStory from "@/stories/TitledListStory";
 import UploadAreaStory from "@/stories/UploadAreaStory";
@@ -28,6 +29,7 @@ import modalSource from "@/components/Modal/Modal.tsx?raw";
 import registerViewSource from "@/views/RegisterView.tsx?raw";
 import searchBarSource from "@/components/SearchBar/SearchBar.tsx?raw";
 import sidebarSource from "@/components/Sidebar/Sidebar.tsx?raw";
+import tabSelectorSource from "@/components/TabSelector/TabSelector.tsx?raw";
 import tableSource from "@/components/Table/Table.tsx?raw";
 import titledListSource from "@/components/TitledList/TitledList.tsx?raw";
 import uploadAreaSource from "@/components/UploadArea/UploadArea.tsx?raw";
@@ -127,6 +129,13 @@ export const stories: Story[] = [
     component: SidebarStory,
     componentSource: sidebarSource,
     fullPage: true,
+  },
+  {
+    id: "tab-selector",
+    title: "Tab Selector",
+    description: "Tab navigation component with optional custom colors",
+    component: TabSelectorStory,
+    componentSource: tabSelectorSource,
   },
   {
     id: "table",
