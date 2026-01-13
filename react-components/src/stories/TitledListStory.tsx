@@ -92,8 +92,8 @@ export default function TitledListStory() {
           items={[]}
           title="Tasks"
           singularTitle="Task"
-          getTitle={(item: unknown) => ""}
-          getId={(item: unknown) => ""}
+          getTitle={(_item: unknown) => ""}
+          getId={(_item: unknown) => ""}
           emptyState={
             <div className="px-4 py-8 text-center text-gray-500">
               <p>No tasks found</p>
