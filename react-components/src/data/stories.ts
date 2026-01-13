@@ -41,6 +41,8 @@ import TagBadgeStory from "@/stories/TagBadgeStory";
 import tagBadgeSource from "@/components/TagBadge/TagBadge.tsx?raw";
 import SettingsSectionStory from "@/stories/SettingsSectionStory";
 import settingsSectionSource from "@/components/SettingsSection/SettingsSection.tsx?raw";
+import ConsoleSidebarStory from "@/stories/ConsoleSidebarStory";
+import consoleSidebarSource from "@/components/ConsoleSidebar/ConsoleSidebar.tsx?raw";
 
 export const stories: Story[] = [
   {
@@ -187,5 +189,14 @@ export const stories: Story[] = [
       "Container component for settings with optional description and variants",
     component: SettingsSectionStory,
     componentSource: settingsSectionSource,
+  },
+  {
+    id: "console-sidebar",
+    title: "Console Sidebar",
+    description:
+      "Navigation sidebar with grouped sections, header, and footer areas",
+    component: ConsoleSidebarStory,
+    componentSource: consoleSidebarSource,
+    fullPage: true,
   },
 ];
