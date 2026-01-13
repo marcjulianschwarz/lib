@@ -80,10 +80,7 @@ export default function ConsoleSidebar({
                 </ConsoleSidebarContext.Provider>
               </nav>
               {footer && (
-                <div
-                  className="mt-4 pt-3 border-t border-stone-200"
-                  onClick={handleMobileToggle}
-                >
+                <div className="mt-4 pt-3 border-t border-stone-200">
                   <ConsoleSidebarContext.Provider value={{ collapsed: false }}>
                     {footer}
                   </ConsoleSidebarContext.Provider>

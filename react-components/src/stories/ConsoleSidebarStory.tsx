@@ -41,7 +41,6 @@ export default function ConsoleSidebarStory() {
               icon={<Building2 className="w-5 h-5" />}
               title="Marc Julian Sch..."
               subtitle="Marc's Individual Org"
-              onClick={() => console.log("User menu clicked")}
             />
           </>
         }
