@@ -11,6 +11,10 @@ export default function BadgeStory() {
       <p>Show Hover</p>
       <Badge text="#99ff99" hexColor="#99ff99" showHoverBorder={true} />
       <Badge text="This is a blue badge" showHoverBorder={true} color="blue" />
+      <p>Sizes</p>
+      <Badge text="Small badge" color="purple" size="sm" />
+      <Badge text="Medium badge" color="purple" size="md" />
+      <Badge text="Large badge" color="purple" size="lg" />
     </div>
   );
 }

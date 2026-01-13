@@ -10,6 +10,14 @@ export type BadgeColor =
   | "raycast"
   | "ios";
 
+export type BadgeSize = "sm" | "md" | "lg";
+
+const sizeClasses: Record<BadgeSize, string> = {
+  sm: "px-2 py-0.5 text-xs",
+  md: "px-3 py-1 text-xs",
+  lg: "px-4 py-1.5 text-sm",
+};
+
 const colorClasses: Record<BadgeColor, string> = {
   purple: "bg-purple-100 text-purple-700",
   blue: "bg-blue-100 text-blue-700",
@@ -39,8 +47,9 @@ export default function Badge(props: {
   showHoverBorder?: boolean;
   className?: string;
   onClick?: React.MouseEventHandler<HTMLSpanElement>;
+  size?: BadgeSize;
 }) {
-  const { showHoverBorder = false } = props;
+  const { showHoverBorder = false, size = "md" } = props;
 
   if (props.hexColor) {
     const normalizedColor = props.hexColor.startsWith("#")
@@ -48,12 +57,13 @@ export default function Badge(props: {
       : `#${props.hexColor}`;
 
     const rgb = Color.hexToRgb(normalizedColor);
+    const sizeClass = sizeClasses[size];
     if (!rgb) {
       return (
         <span
-          className={`px-2 py-0.5 border border-transparent w-fit ${
+          className={`${sizeClass} border border-transparent w-fit ${
             showHoverBorder ? "hover:border-slate-700 transition-colors" : ""
-          } bg-slate-100 text-slate-700 text-xs rounded-full font-medium ${props.className || ""}`}
+          } bg-slate-100 text-slate-700 rounded-full font-medium ${props.className || ""}`}
         >
           {props.text}
         </span>
@@ -76,7 +86,7 @@ export default function Badge(props: {
     return (
       <span
         onClick={props.onClick}
-        className={`px-3 py-1 border border-transparent text-xs rounded-full font-medium w-fit ${
+        className={`${sizeClass} border border-transparent rounded-full font-medium w-fit ${
           showHoverBorder ? "transition-colors" : ""
         } ${props.className || ""}`}
         style={{
@@ -95,11 +105,12 @@ export default function Badge(props: {
   const hoverBorderClass = showHoverBorder
     ? hoverBorderClasses[props.color || "slate"]
     : "";
+  const sizeClass = sizeClasses[size];
 
   return (
     <span
       onClick={props.onClick}
-      className={`px-3 py-1 border border-transparent ${colorClass} ${hoverBorderClass} text-xs rounded-full font-medium w-fit ${
+      className={`${sizeClass} border border-transparent ${colorClass} ${hoverBorderClass} rounded-full font-medium w-fit ${
         showHoverBorder ? "transition-colors" : ""
       } ${props.className || ""}`}
     >
