@@ -1,0 +1,79 @@
+name: backend-unit-tests
+
+on:
+  push:
+    branches: [main, development]
+    paths:
+      - "services/backend/**"
+      - ".github/workflows/backend-unit-tests.yml"
+  pull_request:
+    branches: [main, development]
+    paths:
+      - "services/backend/**"
+      - ".github/workflows/backend-unit-tests.yml"
+
+jobs:
+  unit-tests:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:15-alpine
+        env:
+          POSTGRES_DB: test
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    defaults:
+      run:
+        working-directory: services/backend
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v4
+        with:
+          enable-cache: true
+
+      - name: Install dependencies
+        run: uv sync --extra test --dev
+
+      - name: Run type checking
+        run: uv run ty check .
+
+      - name: Run unit tests
+        env:
+          DB_HOST: localhost
+          DB_PORT: 5432
+          DB_NAME: test
+          DB_USER: postgres
+          DB_PASSWORD: postgres
+          AUTH_SECRET: test_secret_key_for_testing_only_not_for_production
+          FRONTEND_URL: http://localhost:3000
+          S3_ACCESS_KEY: testing
+          S3_SECRET_KEY: testing
+          OPENAI_API_KEY: sk-test-fake-key-for-testing
+          STAGE_ENV: test
+          ENVIRONMENT: test
+          APPLE_TEAM_ID: TESTTEAMID
+          APPLE_KEY_ID: TESTKEYID
+          APPLE_PRIVATE_KEY: test-private-key
+          APPLE_PRIVATE_KEY_PATH: /tmp/test-key.p8
+          APPLE_BUNDLE_ID: com.test.app
+          APPLE_TEST_DEVICE_TOKEN: test-device-token
+        run: uv run pytest -m unit -v
+
